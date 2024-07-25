@@ -16,7 +16,9 @@ reports:
       - junit.xml
 
 artifacts:
+  exclude-paths:
+    - dist/**/*.test.js
   files:
     - node_modules/**/*
     - dist/**/*
-  name: version-$(cat package.json | jq -r ".version")
+  name: codebuild-demo/outputs/$(date +%Y-%m-%d)
