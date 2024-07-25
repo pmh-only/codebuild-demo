@@ -1,0 +1,22 @@
+version: 0.2
+
+phases:
+  pre_build:
+    commands:
+      - npm i
+      - npm run test || exit 0
+  build:
+    commands:
+      - npm run build
+      - npm ci --omit=dev
+
+reports:
+  jest-result:
+    files:
+      - junit.xml
+
+artifacts:
+  files:
+    - node_modules/**/*
+    - dist/**/*
+  name: version-$(cat package.json | jq -r ".version")
